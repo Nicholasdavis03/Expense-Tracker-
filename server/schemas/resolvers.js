@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Transaction } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -19,10 +19,13 @@ const resolvers = {
   },
   Mutation: {
     addTransaction: async (parent, args, context) => {
-      
+      const tx = await Transaction.create(args);
+      return tx; 
     },
     removeTransaction: async (parent, args, context) => {
-      
+      const tx = await Transaction.findByIdAndDelete(args.id);
+      return true;
+
     },
     addUser: async (parent, args) => {
       const user = await User.create(args);
