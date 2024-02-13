@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import "Detail.css"
 
 import Cart from '../components/Cart';
 import { useStoreContext } from '../../utils/GlobalState';
